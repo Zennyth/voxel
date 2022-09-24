@@ -124,6 +124,7 @@ void VoxelInstancer::_notification(int p_what) {
 				VoxelTerrain *vt = Object::cast_to<VoxelTerrain>(get_parent());
 				if (vt != nullptr) {
 					_parent = vt;
+					init_library();
 					_parent_data_block_size_po2 = vt->get_data_block_size_pow2();
 					_parent_mesh_block_size_po2 = vt->get_mesh_block_size_pow2();
 					_mesh_lod_distance = vt->get_max_view_distance();
@@ -1804,6 +1805,11 @@ void VoxelInstancer::get_configuration_warnings(PackedStringArray &warnings) con
 }
 
 #endif
+
+void VoxelInstancer::init_library() {}
+bool VoxelInstancer::is_item_spawnable(int index, Vector3i grid_position) {
+	return true;
+}
 
 void VoxelInstancer::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_library", "library"), &VoxelInstancer::set_library);

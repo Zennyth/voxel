@@ -120,6 +120,9 @@ public:
 protected:
 	void _notification(int p_what);
 
+	virtual void init_library();
+	virtual bool is_item_spawnable(int index, Vector3i grid_position);
+
 private:
 	struct Layer;
 
