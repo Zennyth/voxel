@@ -106,6 +106,8 @@ public:
 	void debug_set_draw_flag(DebugDrawFlag flag_index, bool enabled);
 	bool debug_get_draw_flag(DebugDrawFlag flag_index) const;
 
+	static void _bind_methods();
+
 	// Editor
 
 #ifdef TOOLS_ENABLED
@@ -118,6 +120,8 @@ public:
 #endif
 
 protected:
+	VoxelNode *_parent = nullptr;
+
 	void _notification(int p_what);
 
 	virtual void init_library();
@@ -177,8 +181,6 @@ private:
 			const VoxelTool &voxel_tool, int block_size_po2);
 
 	Dictionary _b_debug_get_instance_counts() const;
-
-	static void _bind_methods();
 
 	// TODO Rename RenderBlock?
 	struct Block {
@@ -246,7 +248,6 @@ private:
 
 	Ref<VoxelInstanceLibrary> _library;
 
-	VoxelNode *_parent = nullptr;
 	unsigned int _parent_data_block_size_po2 = constants::DEFAULT_BLOCK_SIZE_PO2;
 	unsigned int _parent_mesh_block_size_po2 = constants::DEFAULT_BLOCK_SIZE_PO2;
 	float _mesh_lod_distance = 0.f;
